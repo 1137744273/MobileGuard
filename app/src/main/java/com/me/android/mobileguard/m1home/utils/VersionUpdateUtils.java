@@ -49,7 +49,7 @@ public class VersionUpdateUtils {
                     showUpdateDialog(versionEntity);
                     break;
                 case MESSAGE_ENTERHOME:
-                    Intent intent = new Intent(context, HomeActivity.class);
+                    Intent intent = new Intent(context,HomeActivity.class);
                     context.startActivity(intent);
                     context.finish();
                     break;
@@ -67,7 +67,7 @@ public class VersionUpdateUtils {
             HttpClient httpClient = new DefaultHttpClient();
             HttpConnectionParams.setConnectionTimeout(httpClient.getParams(),5000);
             HttpConnectionParams.setSoTimeout(httpClient.getParams(),5000);
-            HttpGet httpGet = new HttpGet("http://android2017.duapp.com/upadte.html");
+            HttpGet httpGet = new HttpGet("http://android2017.duapp.com/updateinfo.html");
             HttpResponse execute = httpClient.execute(httpGet);
             if(execute.getStatusLine().getStatusCode()==200){
                 HttpEntity httpEntity = execute.getEntity();
@@ -77,6 +77,7 @@ public class VersionUpdateUtils {
                 versionEntity.versionCode = jsonObject.getString("code");
                 versionEntity.description = jsonObject.getString("des");
                 versionEntity.apkurl = jsonObject.getString("apkurl");
+
                 if (!mVersion.equals(versionEntity.versionCode)) {
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
                 //版本不同，需升级
@@ -91,7 +92,7 @@ public class VersionUpdateUtils {
         }
     }
     private void showUpdateDialog(final VersionEntity versionEntity){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder  = new AlertDialog.Builder(context);
         builder.setTitle("检查到有新版本："+versionEntity.versionCode);
         builder.setMessage(versionEntity.description);
         builder.setCancelable(false);
