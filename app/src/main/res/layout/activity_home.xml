@@ -25,6 +25,7 @@
             android:text="主人，我是你的手机小护卫"
             android:textColor="#90000000"
             android:textScaleX="1.1"
+
             android:textSize="16sp"
             android:typeface="normal"
 
