@@ -1,10 +1,12 @@
 package cn.edu.gdmec.android.mobileguard.m1home;
 
 
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -12,19 +14,37 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import cn.edu
 
-import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity;
-import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+        .gdmec.android.mobileguard.R;
+import cn.edu
+
+        .gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu
+
+        .gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu
+
+        .gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+import cn.edu
+
+        .gdmec.android.mobileguard.m2theftguard.LostFindActivity;
+import cn.edu
+
+        .gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
+import cn.edu
+
+        .gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
     private long mExitTime;
     /** 存储手机防盗密码的sp */
     private SharedPreferences msharePreferences;
+    //设备管理员
+    private DevicePolicyManager policyManager;
+    //申请权限
+    private ComponentName componentName;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -35,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> adapterView,View view,int i,long l){
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
                 System.out.print(i);
                 switch (i){
                     case 0:
@@ -48,12 +68,25 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+        //1.获取设备管理员
+        policyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        //本行代码需要“手机防盗模块”完成后才能启用
+        //2.申请权限，MyDeviceAdminReciever继承自DeviceAdminReceiver
+        componentName = new ComponentName(this, MyDeviceAdminReceiver.class);
+        //3.判断没有权限则申请权限
+        boolean active = policyManager.isAdminActive(componentName);
+        if (!active){
+            //没有管理员的权限，则获取管理员的权限
+            Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,componentName);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,"获取超级管理员权限，用于远程锁屏和清理数据");
+            startActivity(intent);
+        }
     }
     public void startActivity(Class<?> cls){
         Intent intent = new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode==KeyEvent.KEYCODE_BACK){
@@ -127,7 +160,6 @@ public class HomeActivity extends AppCompatActivity {
                 }else{
                     //对话框消失，弹出土司
                     mInPswdDialog.dismiss();
-
                     Toast.makeText(HomeActivity.this,"密码有误，请重新输入！",Toast.LENGTH_LONG).show();
                 }
             }
@@ -173,9 +205,3 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 }
-
-
-
-
-
-
