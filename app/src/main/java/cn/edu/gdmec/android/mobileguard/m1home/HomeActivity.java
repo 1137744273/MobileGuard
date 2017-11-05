@@ -35,6 +35,7 @@ import cn.edu
 import cn.edu
 
         .gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -58,13 +59,17 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
                 System.out.print(i);
                 switch (i){
-                    case 0:
+                    case 0://手机防盗
                         if(isSetUpPassword()){
                             showInterPswdDialog();
                         }else{
                             showSetUpPswdDialog();
                         }
                         break;
+                    case 1://通讯卫士
+                        startActivity(SecurityPhoneActivity.class);
+                        break;
+
                 }
             }
         });
