@@ -80,6 +80,7 @@ public class  ContactSelectActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
         }
+
     }
 }
 
