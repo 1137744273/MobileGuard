@@ -96,7 +96,7 @@
 
         </receiver>
         <receiver
-            android:name=".m3communicationguard.receiver.interceptSmsReciever"
+            android:name=".m3communicationguard.receiver.InterceptSmsReciever"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="2147483647">
