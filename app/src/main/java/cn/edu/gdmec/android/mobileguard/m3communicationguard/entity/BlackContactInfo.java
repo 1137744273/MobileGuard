@@ -13,6 +13,8 @@ public class BlackContactInfo {
     public String contactName;
     //黑名单拦截模式
     public int mode;
+  //黑名单类型
+    public String  type;
 
     public String getModeString(int mode){
         switch (mode){
