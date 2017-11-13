@@ -79,6 +79,12 @@
             style="@style/tvyellow14sp"
             android:text="关于"
             android:drawableTop="@drawable/abouticon_yellow_n"/>
+        <TextView
+            android:id="@+id/tv_activity_app"
+            style="@style/tvyellow14sp"
+            android:text="huodong"
+            android:drawableTop="@drawable/activityicon_yellow_s"/>
+
 
     </LinearLayout>
 

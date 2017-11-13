@@ -34,6 +34,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     private TextView mSDMemoryTV;
     private ListView mListView;
     private TextView mAbout;
+    private TextView mActivity;
 
     private List<AppInfo> appInfos;
     private List<AppInfo> userAppInfos = new ArrayList<AppInfo> (  );
@@ -110,6 +111,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
         mAppNumTV = (TextView ) findViewById ( R.id.tv_appnumber );
         mListView = (ListView) findViewById ( R.id.lv_appmanager );
         mAbout=(TextView)findViewById(R.id.tv_about_app);
+        mActivity=(TextView) findViewById(R.id.tv_activity_app);
         getMemoryFromPhone();
         initData ();
         initListener();
