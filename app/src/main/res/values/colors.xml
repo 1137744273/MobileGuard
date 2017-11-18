@@ -3,16 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <!--手机防盗模块需要用到 2017-10-10-->
     <color name="purple">#5542B8</color>
-    <!--通讯卫士模块要用到的 2017.11.4-->
-    <color name="bright_purple">#c218D9</color>
-    <color name="light_gary">#D1A0CE</color>
-    <!--软件管家模块用到的 2017.11.06-->
+    <!--通讯卫士模块要用到的-->
+    <color name="bright_purple">#C218D9</color>
+    <color name="light_gary">#D1D0CE</color>
+    <!--软件管家模块用到的-->
     <color name="black30">#30000000</color>
     <color name="black">#000000</color>
     <color name="graye5">#E5E5E5</color>
     <color name="bright_yellow">#FEC425</color>
     <color name="transparent">#00000000</color>
 
+    <!--手机杀毒模块-->
+    <color name="dark_gray">#ff999999</color>
+    <color name="bright_red">#F22723</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#2684DC</color>
+    <color name="light_blue">#1671CE</color>
 </resources>

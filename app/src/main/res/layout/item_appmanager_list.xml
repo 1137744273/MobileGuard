@@ -82,7 +82,7 @@
         <TextView
             android:id="@+id/tv_activity_app"
             style="@style/tvyellow14sp"
-            android:text="huodong"
+            android:text="活动"
             android:drawableTop="@drawable/activityicon_yellow_s"/>
 
 

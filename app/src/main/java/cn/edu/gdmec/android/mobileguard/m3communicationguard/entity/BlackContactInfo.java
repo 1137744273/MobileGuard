@@ -12,9 +12,11 @@ public class BlackContactInfo {
     //黑名单联系人名称
     public String contactName;
     //黑名单拦截模式
+    public String style;//黑名单类型
     public int mode;
   //黑名单类型
     public String  type;
+
 
     public String getModeString(int mode){
         switch (mode){
