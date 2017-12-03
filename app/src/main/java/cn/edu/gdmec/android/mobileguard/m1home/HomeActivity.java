@@ -14,32 +14,18 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import cn.edu
-
-        .gdmec.android.mobileguard.R;
-import cn.edu
-
-        .gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
-import cn.edu
-
-        .gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
-import cn.edu
-
-        .gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
-import cn.edu
-
-        .gdmec.android.mobileguard.m2theftguard.LostFindActivity;
-import cn.edu
-
-        .gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
-import cn.edu
-
-        .gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CacheClearListActivity;
-import cn.edu.gdmec.android.mobileguard.m6cleancache.CleanCacheActivity;
+import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.TrafficMonitoringActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
@@ -82,6 +68,11 @@ public class HomeActivity extends AppCompatActivity {
                     case 4:
                         startActivity ( CacheClearListActivity.class );
                         break;
+                    case 6:
+                        //流量统计
+                        startActivity ( TrafficMonitoringActivity.class );
+                        break;
+
                 }
             }
         });
