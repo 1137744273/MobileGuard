@@ -126,6 +126,16 @@
                   android:exported="true">
 
         </receiver>
+        <!--m9-->
+        <activity android:name=".m9advancedtools.AdvancedToolsActivity"/>
+        <activity android:name=".m9advancedtools.AppLockActivity"/>
+        <activity android:name=".m9advancedtools.EnterPswActivity"/>
+        <activity android:name=".m9advancedtools.NumBelongtoActivity"/>
+        <activity android:name=".m9advancedtools.SMSBackupActivity"/>
+        <activity android:name=".m9advancedtools.SMSReducitionActivity"/>
+        <service android:name=".m9advancedtools.service.AppLockService"
+                 android:persistent="true"/>
+
 
 
     </application>
