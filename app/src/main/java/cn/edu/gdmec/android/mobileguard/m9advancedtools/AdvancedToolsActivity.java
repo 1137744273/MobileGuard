@@ -44,9 +44,21 @@ public class AdvancedToolsActivity extends Activity implements OnClickListener{
             case R.id.imgv_leftbtn:
                 finish();
                 break;
+            case R.id.advanceview_applock:
+                //进入程序锁页面
+                startActivity(AppLockActivity.class);
+                break;
             case R.id.advanceview_numbelongs:
                 //进入归属地查询页面
                 startActivity(NumBelongtoActivity.class);
+                break;
+            case R.id.advanceview_smsbackup:
+                //进入短信备份页面
+                startActivity(SMSBackupActivity.class);
+                break;
+            case R.id.advanceview_smsreducition:
+                //进入短信还原页面
+                startActivity(SMSReducitionActivity.class);
                 break;
         }
     }

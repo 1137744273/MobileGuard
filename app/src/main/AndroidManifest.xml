@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="cn.edu.gdmec.android.mobileguard">
 
     <!-- mlhome permission -->
@@ -21,6 +22,11 @@
     <!-- 缓存6 -->
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
     <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <!--m9-->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermission"/>
+
 
     <application
         android:name=".App"
@@ -114,8 +120,15 @@
         <!--m8-->
         <activity android:name=".m8trafficmonitor.OperatorSetActivity"/>
         <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"/>
+        <!--m9-->
         <activity android:name=".m9advancedtools.AdvancedToolsActivity"/>
+        <activity android:name=".m9advancedtools.AppLockActivity"/>
+        <activity android:name=".m9advancedtools.EnterPswActivity"/>
         <activity android:name=".m9advancedtools.NumBelongtoActivity"/>
+        <activity android:name=".m9advancedtools.SMSBackupActivity"/>
+        <activity android:name=".m9advancedtools.SMSReducitionActivity"/>
+        <service android:name=".m9advancedtools.service.AppLockService"
+                 android:persistent="true"/>
         <service
             android:name=".m8trafficmonitor.service.TrafficMonitoringService"
             android:enabled="true"
@@ -127,12 +140,7 @@
 
         </receiver>
         <!--m9-->
-        <activity android:name=".m9advancedtools.AdvancedToolsActivity"/>
-        <activity android:name=".m9advancedtools.AppLockActivity"/>
-        <activity android:name=".m9advancedtools.EnterPswActivity"/>
-        <activity android:name=".m9advancedtools.NumBelongtoActivity"/>
-        <activity android:name=".m9advancedtools.SMSBackupActivity"/>
-        <activity android:name=".m9advancedtools.SMSReducitionActivity"/>
+
         <service android:name=".m9advancedtools.service.AppLockService"
                  android:persistent="true"/>
 
