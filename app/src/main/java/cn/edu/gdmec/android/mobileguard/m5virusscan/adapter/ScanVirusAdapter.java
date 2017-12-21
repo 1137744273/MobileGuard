@@ -1,6 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m5virusscan.adapter;
 
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +11,11 @@ import java.util.List;
 
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
-;
+
 
 /**
- * Created by milku on 2017/11/18.
+ * Created by Swindler on 2017/11/13.
  */
-
-
-
-
 
 public class ScanVirusAdapter extends BaseAdapter{
     private List<ScanAppInfo> mScanAppInfos;

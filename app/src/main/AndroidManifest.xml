@@ -25,7 +25,7 @@
     <!--m9-->
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
-        tools:ignore="ProtectedPermission"/>
+        tools:ignore="ProtectedPermissions" />
 
 
     <application

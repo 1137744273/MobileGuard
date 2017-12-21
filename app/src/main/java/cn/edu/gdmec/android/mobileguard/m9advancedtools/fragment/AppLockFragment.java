@@ -1,9 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment;
 
-/**
- * Created by milku on 2017/12/17.
- */
-
 import android.content.Context;
 import android.database.ContentObserver;
 import android.net.Uri;
@@ -28,6 +24,11 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.adapter.AppLockAdapter;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.AppLockDao;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.utils.AppInfoParser;
+
+
+/**
+ * Created by Swindler on 2017/12/16.
+ */
 
 public class AppLockFragment extends Fragment {
     private Context context;

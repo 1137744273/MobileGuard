@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m5virusscan;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +24,7 @@ import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 
 /**
- * Created by milku on 2017/11/18.
+ * Created by SwinJoy on 2017/11/13.
  */
 
 public class VirusScanActivity extends AppCompatActivity implements View.OnClickListener{
@@ -37,6 +39,8 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate ( savedInstanceState );
+        requestWindowFeature( Window.FEATURE_NO_TITLE);
+        getSupportActionBar ().hide (); //去掉标题栏
         setContentView ( R.layout.activity_virus_scan );
         mSP = getSharedPreferences ( "config", MODE_PRIVATE );
         //copyDB("antivirus.db");
@@ -52,7 +56,6 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
             public void run(){
                 super.run ();
                 versionUpdateUtils.getCloudVersion ();
-
             }
         }.start ();*/
         //mScanVersion.setText(mVersion);
@@ -117,7 +120,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                     }else{
                         file = new File(fromPath,
                                 "antivirus.db");
-                        is= new FileInputStream(file);
+                        is= new FileInputStream (file);
                     }
 
                     FileOutputStream fos = openFileOutput ( dbname, MODE_PRIVATE );
@@ -150,6 +153,9 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         //mScanVersion=(TextView)findViewById(R.id.tv_scan_version);
 
         findViewById ( R.id.rl_allscanvirus ).setOnClickListener ( this );
+
+//        2017.11.28
+        findViewById ( R.id.rl_cloudscanvirus ).setOnClickListener ( this );
     }
     @Override
     public void onClick(View view){
@@ -158,8 +164,15 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
                 finish ();
                 break;
             case R.id.rl_allscanvirus:
-                startActivity(new Intent( this,VirusScanSpeedActivity.class ));
+                startActivity(new Intent ( this,VirusScanSpeedActivity.class ));
                 break;
+
+//            课堂练习2017.11.28
+            case R.id.rl_cloudscanvirus:
+                Intent intent = new Intent ( this,VirusScanSpeedActivity.class );
+                intent.putExtra ( "cloud", true );
+
+                startActivity ( intent );
         }
     }
 }

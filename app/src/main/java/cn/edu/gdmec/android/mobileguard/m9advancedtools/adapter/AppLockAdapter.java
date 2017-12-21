@@ -1,9 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools.adapter;
 
-/**
- * Created by milku on 2017/12/17.
- */
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +13,8 @@ import java.util.List;
 import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.entity.AppInfo;
 
-/**此类可复用，未加锁和已加锁都可以用此Adapter**/
-public class AppLockAdapter extends BaseAdapter {
 
+public class AppLockAdapter extends BaseAdapter {
     private List<AppInfo> appInfos;
     private Context context;
 
@@ -31,37 +26,34 @@ public class AppLockAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-
         return appInfos.size();
     }
 
     @Override
-    public Object getItem(int position) {
-
-        return appInfos.get(position);
+    public Object getItem(int i) {
+        return appInfos.get(i);
     }
 
     @Override
-    public long getItemId(int position) {
-
-        return position;
+    public long getItemId(int i) {
+        return i;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        if(convertView !=null && convertView instanceof RelativeLayout){
-            holder = (ViewHolder) convertView.getTag();
+        if(view !=null && view instanceof RelativeLayout){
+            holder = (ViewHolder) view.getTag();
         }else{
             holder = new ViewHolder();
-            convertView = View.inflate(context, R.layout.item_list_applock, null);
-            holder.mAppIconImgv = (ImageView) convertView.findViewById( R.id.imgv_appicon);
-            holder.mAppNameTV = (TextView) convertView.findViewById(R.id.tv_appname);
-            holder.mLockIcon = (ImageView) convertView.findViewById(R.id.imgv_lock);
-            convertView.setTag(holder);
+            view = View.inflate(context, R.layout.item_list_applock, null);
+            holder.mAppIconImgv = (ImageView) view.findViewById(R.id.imgv_appicon);
+            holder.mAppNameTV = (TextView) view.findViewById(R.id.tv_appname);
+            holder.mLockIcon = (ImageView) view.findViewById(R.id.imgv_lock);
+            view.setTag(holder);
         }
 
-        final AppInfo appInfo = appInfos.get(position);
+        final AppInfo appInfo = appInfos.get(i);
         holder.mAppIconImgv.setImageDrawable(appInfo.icon);
         holder.mAppNameTV.setText(appInfo.appName);
         if(appInfo.isLock){
@@ -71,9 +63,8 @@ public class AppLockAdapter extends BaseAdapter {
             //当前应用未加锁
             holder.mLockIcon.setBackgroundResource(R.drawable.appunlock_icon);
         }
-        return convertView;
+        return view;
     }
-
     static class ViewHolder{
         TextView mAppNameTV;
         ImageView mAppIconImgv;

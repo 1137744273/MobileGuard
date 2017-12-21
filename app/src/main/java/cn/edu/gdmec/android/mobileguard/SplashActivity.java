@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
-
 import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.Myutils;
 import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;

@@ -1,5 +1,9 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools.db;
 
+/**
+ * Created by Swindler on 2017/12/16.
+ */
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

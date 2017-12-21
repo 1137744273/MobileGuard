@@ -1,7 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment;
 
 /**
- * Created by milku on 2017/12/17.
+ * Created by Swindler on 2017/12/16.
  */
 
 import android.database.ContentObserver;
@@ -22,20 +22,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.edu.gdmec.android.mobileguard.App;
 import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m9advancedtools.utils.AppInfoParser;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.adapter.AppLockAdapter;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.AppLockDao;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.entity.AppInfo;
-public class AppUnLockFragment extends Fragment {
+import cn.edu.gdmec.android.mobileguard.m9advancedtools.utils.AppInfoParser;
 
+public class AppUnLockFragment extends Fragment {
     private TextView mUnLockTV;
     private ListView mUnLockLV;
-    List<AppInfo> unlockApps = new ArrayList<AppInfo> ();
+    List<AppInfo> unlockApps = new ArrayList<AppInfo>();
     private AppLockAdapter adapter;
     private AppLockDao dao;
-    //private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
-    private Uri uri = Uri.parse("content://cn.edu.gdmec.android.mobileguard.m9advancedtools.applock");
+    private Uri uri = Uri.parse(App.APPLOCK_CONTENT_URI);
     private List<AppInfo> appInfos;
     private Handler mhandler = new Handler(){
         public void handleMessage(android.os.Message msg) {
@@ -44,7 +44,7 @@ public class AppUnLockFragment extends Fragment {
                     unlockApps.clear();
                     unlockApps.addAll(((List<AppInfo>)msg.obj));
                     if(adapter == null){
-                        adapter = new AppLockAdapter (unlockApps, getActivity());
+                        adapter = new AppLockAdapter(unlockApps, getActivity());
                         mUnLockLV.setAdapter(adapter);
                     }else{
                         adapter.notifyDataSetChanged();
@@ -59,7 +59,7 @@ public class AppUnLockFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_appunlock, null);
-        mUnLockTV = (TextView) view.findViewById( R.id.tv_unlock);
+        mUnLockTV = (TextView) view.findViewById(R.id.tv_unlock);
         mUnLockLV = (ListView) view.findViewById(R.id.lv_unlock);
         return view;
     }
@@ -71,13 +71,14 @@ public class AppUnLockFragment extends Fragment {
         fillData();
         initListener();
         super.onResume();
-        getActivity().getContentResolver().registerContentObserver(uri, true, new ContentObserver (new Handler()) {
-            @Override
-            public void onChange(boolean selfChange) {
-                fillData();
-            }
-        });
-     /*   super.onResume ();*/
+        getActivity().getContentResolver().registerContentObserver(uri, true,
+                new ContentObserver(new Handler()) {
+                    @Override
+                    public void onChange(boolean selfChange) {
+                        fillData();
+                    }
+                }
+        );
     }
 
     public void fillData() {
@@ -87,7 +88,7 @@ public class AppUnLockFragment extends Fragment {
             public void run() {
                 for(AppInfo info : appInfos){
                     if(!dao.find(info.packageName)){
-                        //  未  加锁
+                        //未加锁
                         info.isLock = false;
                         aInfos.add(info);
                     }
@@ -103,18 +104,20 @@ public class AppUnLockFragment extends Fragment {
     }
 
     private void initListener() {
-        mUnLockLV.setOnItemClickListener(new AdapterView.OnItemClickListener () {
+        mUnLockLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
-                                    final int position, long id) {
-                if(unlockApps.get(position).packageName.equals("cn.edu.gdmec.android.mobileguard")){
+                                    final int i, long id) {
+                //手机安全卫士不能加锁
+                if(unlockApps.get(i).packageName.equals("cn.edu.gdmec.android.mobileguard")){
                     return;
                 }
                 //给应用加锁
                 //播放一个动画效果
-                TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 1.0f,
-                        Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0);
+                TranslateAnimation ta = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0,
+                        Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0,
+                        Animation.RELATIVE_TO_SELF, 0);
                 ta.setDuration(300);
                 view.startAnimation(ta);
                 new Thread(){
@@ -128,8 +131,8 @@ public class AppUnLockFragment extends Fragment {
                             @Override
                             public void run() {
                                 //程序锁信息被加入到数据库了
-                                dao.insert(unlockApps.get(position).packageName);
-                                unlockApps.remove(position);
+                                dao.insert(unlockApps.get(i).packageName);
+                                unlockApps.remove(i);
                                 adapter.notifyDataSetChanged();//通知界面更新
                             }
                         });
