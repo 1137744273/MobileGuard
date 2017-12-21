@@ -29,9 +29,6 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.AppLockDao;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m9advancedtools.utils.AppInfoParser;
 
-
-
-
 public class AppLockFragment extends Fragment {
     private Context context;
     private TextView mLockTV;
